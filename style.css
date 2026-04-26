@@ -1179,11 +1179,38 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .lpg-promo-banner {
-        padding: 30px 20px;
+        padding: 20px 15px;
+        gap: 15px;
     }
 
     .lpg-content h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+
+    .lpg-content p {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .brands {
+        gap: 6px;
+        margin-bottom: 15px;
+    }
+
+    .brand-tag {
+        padding: 4px 10px;
+        font-size: 0.75rem;
+    }
+
+    .lpg-content .btn-secondary {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .lpg-image img {
+        max-height: 180px;
     }
     
     .footer-top {
