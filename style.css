@@ -65,6 +65,7 @@ ul {
     margin-bottom: 60px;
     position: relative;
     font-weight: 800;
+    font-family: 'Hind Siliguri', sans-serif;
 }
 
 .section-title::after {
@@ -87,6 +88,8 @@ ul {
    TYPOGRAPHY
 ========================================= */
 h1, h2, h3, h4, h5, h6 {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-weight: 700;
     line-height: 1.3;
 }
 
