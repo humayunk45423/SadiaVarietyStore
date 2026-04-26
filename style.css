@@ -999,8 +999,8 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
     .nav-content {
-        height: 70px;
-        gap: 10px;
+        height: 60px;
+        gap: 8px;
     }
 
     .logo-text {
@@ -1091,21 +1091,23 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .hero-buttons {
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
-        max-width: 280px;
-        gap: 12px;
+        max-width: 360px;
+        gap: 10px;
         margin: 0 auto;
         display: flex;
         align-items: center;
+        justify-content: center;
     }
     
     .hero-buttons a {
-        width: 100%;
-        padding: 14px;
-        font-size: 1rem;
+        flex: 1;
+        padding: 12px 5px;
+        font-size: 0.85rem;
         display: block;
         text-align: center;
+        white-space: nowrap;
     }
 
     .hero-image-container {
