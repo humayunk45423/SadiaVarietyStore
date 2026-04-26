@@ -86,18 +86,70 @@ const animateOnScroll = () => {
     });
 };
 
-// Hero Image Slideshow
+// Hero Image Slideshow with Touch Swiping
 const initSlideshow = () => {
     const slides = document.querySelectorAll('.hero-image.slide');
-    if (slides.length === 0) return;
+    const slideshowContainer = document.querySelector('.hero-slideshow');
+    if (slides.length === 0 || !slideshowContainer) return;
     
     let currentSlide = 0;
-    
-    setInterval(() => {
+    let slideInterval;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const showSlide = (index) => {
         slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
+        currentSlide = (index + slides.length) % slides.length;
         slides[currentSlide].classList.add('active');
-    }, 4000); // Change image every 4 seconds
+    };
+
+    const nextSlide = () => showSlide(currentSlide + 1);
+    const prevSlide = () => showSlide(currentSlide - 1);
+
+    const startInterval = () => {
+        stopInterval();
+        slideInterval = setInterval(nextSlide, 5000);
+    };
+
+    const stopInterval = () => {
+        if (slideInterval) clearInterval(slideInterval);
+    };
+
+    // Touch events for swiping
+    slideshowContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopInterval();
+    }, { passive: true });
+
+    slideshowContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleGesture();
+        startInterval();
+    }, { passive: true });
+
+    const handleGesture = () => {
+        const threshold = 50;
+        if (touchEndX < touchStartX - threshold) {
+            nextSlide(); // Swipe Left -> Next
+        } else if (touchEndX > touchStartX + threshold) {
+            prevSlide(); // Swipe Right -> Prev
+        }
+    };
+
+    // Mouse support for desktop swiping (optional but good for testing)
+    slideshowContainer.addEventListener('mousedown', (e) => {
+        touchStartX = e.screenX;
+        stopInterval();
+    });
+
+    slideshowContainer.addEventListener('mouseup', (e) => {
+        touchEndX = e.screenX;
+        handleGesture();
+        startInterval();
+    });
+
+    // Start the slideshow
+    startInterval();
 };
 
 // Initialize animations and slideshow on load
